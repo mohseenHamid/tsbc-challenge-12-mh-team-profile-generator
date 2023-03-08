@@ -32,7 +32,7 @@
  */
 
 const { welcomeMsg } = require("./lib/welcome-msg");
-const { getManagerDetails } = require("./lib/game-functions");
+const { getManagerDetails } = require("./lib/functions");
 
 // function call to intitialise app
 function init() {
