@@ -1,14 +1,3 @@
-// const inquirer = require("inquirer");
-// const path = require("path");
-// const fs = require("fs");
-
-// const { info } = require("console");
-const { welcomeMsg } = require("./lib/welcome-msg");
-// const { writeToFile } = require("./lib/write-to-file");
-// const render = require("./src/page-template.js");
-// const { teamArray, getManagerDetails } = require("./lib/game-functions");
-const { getManagerDetails } = require("./lib/game-functions");
-
 /* 
 --- TASK: Write Code to gather information about the development team members, and render the HTML file ---
 
@@ -42,21 +31,16 @@ const { getManagerDetails } = require("./lib/game-functions");
 - call the init ftn
  */
 
-// function call to initialize program
+const { welcomeMsg } = require("./lib/welcome-msg");
+const { getManagerDetails } = require("./lib/game-functions");
+
+// function call to intitialise app
 function init() {
 	console.info(welcomeMsg);
 
+	// prompt the user for manager details
 	getManagerDetails();
-
-	// // define the file name param for the writeToFile ftn
-	// const OUTPUT_DIR = path.resolve(__dirname, "./output");
-	// const outputPath = path.join(OUTPUT_DIR, "team.html");
-
-	// // define the content param for the writeToFile ftn
-	// const renderResult = render(teamArray);
-
-	// // call the writeToFile ftn
-	// writeToFile(outputPath, renderResult);
 }
 
+// call the init function to begin the app
 init();
