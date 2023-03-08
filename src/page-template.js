@@ -1,4 +1,5 @@
 // creates the team
+// the argument "team" is an array
 const generateTeam = (team) => {
 	// creates the manager html
 	const generateManager = (manager) => {
@@ -63,6 +64,7 @@ const generateTeam = (team) => {
 		team
 			.filter((employee) => employee.getRole() === "Manager")
 			.map((manager) => generateManager(manager))
+			.join("") // Added .join("")
 	);
 	html.push(
 		team
@@ -81,6 +83,7 @@ const generateTeam = (team) => {
 };
 
 // exports function to generate entire page
+// the argument "team" is an array of employee objects
 module.exports = (team) => {
 	return `
     <!DOCTYPE html>

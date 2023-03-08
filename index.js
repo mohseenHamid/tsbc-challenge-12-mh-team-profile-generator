@@ -1,117 +1,40 @@
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const inquirer = require("inquirer");
-const path = require("path");
-const fs = require("fs");
+// const inquirer = require("inquirer");
+// const path = require("path");
+// const fs = require("fs");
 
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
+// const Manager = require("./lib/Manager");
+// const Engineer = require("./lib/Engineer");
+// const Intern = require("./lib/Intern");
+// const { info } = require("console");
+// const { welcomeMsg } = require("./lib/welcome-msg");
+// const { writeToFile } = require("./lib/write-to-file");
+// const render = require("./src/page-template.js");
 
-const render = require("./src/page-template.js");
+const { init } = require("./lib/game-functions");
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
+// const OUTPUT_DIR = path.resolve(__dirname, "output");
+// const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-// --- MOCK CODE ---
-class Game {
-	// Save a reference for `this` in `this` as `this` will change inside of inquirer
-	constructor() {
-		this.guessesLeft = 0;
-	}
+/* 
+--- TASK: Write Code to gather information about the development team members, and render the HTML file ---
 
-	// Sets the guesses to 10 and gets the next word
-	play() {
-		this.guessesLeft = 10;
-		this.nextWord();
-	}
+--- APP STEPS ---
+- create an empty team array in the global scope
+	- pass the employee objects from the inquirer responses into the "teamArray" array
+	- pass the "teamArray" array into the render function and assign it to a variable called renderResult
+	- the render function will render the HTML and call the generateTeam ftn with the "team" array as its argument
+	- renderResult will be the content input for the writeToFile ftn in the index.js page
+		- need to export renderResult from the game-functions page
 
-	// Creates a new Word object using a random word from the array, asks the user for their guess
-	nextWord() {
-		const randWord = words[Math.floor(Math.random() * words.length)];
-		this.currentWord = new Word(randWord);
-		console.log("\n" + this.currentWord.toString() + "\n");
-		this.makeGuess();
-	}
+- write ftns for each employee type to prompt user for details
 
-	// Uses inquirer to prompt the user for their guess
-	makeGuess() {
-		this.askForLetter().then(() => {
-			// If the user has no guesses remaining after this guess, show them the word, ask if they want to play again
-			if (this.guessesLeft < 1) {
-				console.log(
-					'No guesses left! Word was: "' +
-						this.currentWord.getSolution() +
-						'"\n'
-				);
-				this.askToPlayAgain();
+--- index.js PAGE ---
+- write a init() ftn in the index.js page
+	- displays the welcome message
+	- initiates the app by calling the game ftn
+	- calls the writeToFile ftn
+		- the renderResult ftn from the game-functions page will be the content argument
+ */
 
-				// If the user guessed all letters of the current word correctly, reset guessesLeft to 10 and get the next word
-			} else if (this.currentWord.guessedCorrectly()) {
-				console.log("You got it right! Next word!");
-				this.guessesLeft = 10;
-				this.nextWord();
-
-				// Otherwise prompt the user to guess the next letter
-			} else {
-				this.makeGuess();
-			}
-		});
-	}
-
-	// Asks the user if they want to play again after running out of guessesLeft
-	askToPlayAgain() {
-		inquirer
-			.prompt([
-				{
-					type: "confirm",
-					name: "choice",
-					message: "Play Again?"
-				}
-			])
-			.then((val) => {
-				// If the user says yes to another game, play again, otherwise quit the game
-				if (val.choice) {
-					this.play();
-				} else {
-					this.quit();
-				}
-			});
-	}
-
-	// Prompts the user for a letter
-	askForLetter() {
-		return inquirer
-			.prompt([
-				{
-					type: "input",
-					name: "choice",
-					message: "Guess a letter!",
-					// The users guess must be a number or letter
-					validate: (val) => /[a-z1-9]/gi.test(val)
-				}
-			])
-			.then((val) => {
-				// If the user's guess is in the current word, log that they chose correctly
-				const didGuessCorrectly = this.currentWord.guessLetter(val.choice);
-				if (didGuessCorrectly) {
-					console.log(chalk.green("\nCORRECT!!!\n"));
-
-					// Otherwise decrement `guessesLeft`, and let the user know how many guesses they have left
-				} else {
-					this.guessesLeft--;
-					console.log(chalk.red("\nINCORRECT!!!\n"));
-					console.log(this.guessesLeft + " guesses remaining!!!\n");
-				}
-
-				console.log(this.currentWord.toString() + "\n");
-			});
-	}
-
-	// Logs goodbye and exits the node app
-	quit() {
-		console.log("\nGoodbye!");
-		process.exit(0);
-	}
-}
-
-module.exports = Game;
+// function call to initialize program
+init();
