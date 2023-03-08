@@ -60,7 +60,7 @@ Instructions on how to use the application will be presented via a welcome messa
 
 ### Portfolio Webpage Sample Screenshot
 
-- The index.html can be found [here](./output/team.html)
+- The `index.html` can be found [here](./output/team.html)
 - Please see below a portfolio sample webpage screenshot:
 
 ## ![screenshot of team portfolio sample HTML webpage titled “My Team” which features three boxes listing employee names, titles, and other key info](./assets/team-portfolio-sample-screenshot.png)
